@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Dhaba Wala Radio is a roadside Indian dhaba themed YouTube playlist site with India-time music rotations."
+      content="Dhaba Wala Radio is a retro Indian dhaba themed music site powered by a YouTube playlist."
     />
     <title>Dhaba Wala Radio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@500;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@500;700;800&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -31,32 +31,39 @@
 
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero__image" role="img" aria-label="A warm Indian meal served at a roadside dhaba"></div>
-        <div class="hero__shade"></div>
+        <div class="old-dhaba-scene" aria-hidden="true">
+          <div class="wall-sign">
+            <span>पुराना ढाबा</span>
+            <strong>RADIO</strong>
+          </div>
+          <div class="hanging-bulb"></div>
+          <div class="charpai"></div>
+          <div class="tandoor"></div>
+        </div>
         <div class="hero__content">
-          <p class="eyebrow">Highway songs, steel tumblers, hot tawa</p>
+          <p class="eyebrow">Highway side, brass knob, cassette mood</p>
           <h1 id="hero-title">
             <span>ढाबा वाला रेडियो</span>
             Dhaba Wala Radio
           </h1>
           <p class="hero__copy">
-            A roadside Indian dhaba music page for chai breaks, late-night drives,
-            butter naan orders, and that one speaker near the billing counter.
+            An old roadside dhaba radio for your playlist: hand-painted walls,
+            smoky tandoor warmth, and songs rolling through the counter speaker.
           </p>
           <div class="hero__actions">
-            <a class="button button--primary" href="#radio">Start the playlist</a>
-            <a class="button button--ghost" href="#rotations">See today&apos;s mood</a>
+            <a class="button button--primary" href="#radio">Tune in</a>
+            <a class="button button--ghost" href="#rotations">Today&apos;s mood</a>
           </div>
         </div>
       </section>
 
       <section class="radio-shell" id="radio" aria-labelledby="radio-title">
         <div class="radio-copy">
-          <p class="section-kicker">Playing through YouTube</p>
-          <h2 id="radio-title">The dhaba speaker is on.</h2>
+          <p class="section-kicker">YouTube playlist source</p>
+          <h2 id="radio-title">The counter radio is tuned.</h2>
           <p>
-            No video, no YouTube playlist. This page now plays its own tiny
-            dhaba-style instrumental loops directly in the browser.
+            This retro player uses your playlist link through the official
+            YouTube player, with a custom old-dhaba control panel around it.
           </p>
           <div class="now-strip" aria-live="polite">
             <span class="status-dot"></span>
@@ -64,26 +71,42 @@
           </div>
         </div>
 
-        <div class="audio-panel">
-          <div class="audio-art" aria-hidden="true">
-            <img id="track-photo" src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80" alt="" />
-            <div class="audio-art__plate">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
+        <div class="radio-player">
+          <div class="radio-player__top">
+            <div class="song-photo">
+              <img
+                id="song-photo"
+                src="https://img.youtube.com/vi/5MIGQBpVeqs/hqdefault.jpg"
+                alt=""
+              />
             </div>
-            <p>Audio Only</p>
+            <div class="radio-display">
+              <span>Now Playing</span>
+              <strong id="track-title">Dhaba Wala Playlist</strong>
+              <p id="track-source">PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy</p>
+            </div>
           </div>
-          <div class="audio-meta">
-            <p class="section-kicker">Built-in player</p>
-            <h3 id="track-title">Butter Naan Bass</h3>
-            <p id="track-note">Warm tandoor groove for the first order.</p>
+
+          <div class="youtube-window">
+            <iframe
+              id="youtube-player"
+              title="Dhaba Wala YouTube playlist player"
+              src="https://www.youtube.com/embed/videoseries?list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy&enablejsapi=1&rel=0&modestbranding=1"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
           </div>
-          <div class="track-picks" aria-label="Track list">
-            <button class="track-pill is-selected" type="button" data-track="0">Butter Naan Bass</button>
-            <button class="track-pill" type="button" data-track="1">Masala Chai Chorus</button>
-            <button class="track-pill" type="button" data-track="2">Highway Raat</button>
+
+          <div class="radio-controls" aria-label="Playlist controls">
+            <button id="prev-track" type="button" aria-label="Previous song">PREV</button>
+            <button id="play-track" class="tune-button" type="button" aria-label="Play">PLAY</button>
+            <button id="next-track" type="button" aria-label="Next song">NEXT</button>
+          </div>
+
+          <div class="radio-progress">
+            <span id="current-time">0:00</span>
+            <input id="track-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Track progress" />
+            <span id="duration-time">0:00</span>
           </div>
         </div>
       </section>
@@ -147,46 +170,15 @@
       </section>
     </main>
 
-    <section class="music-bar" aria-label="Music player">
-      <audio id="dhaba-audio" preload="auto" loop></audio>
-      <div class="music-track">
-        <div class="mini-cover" aria-hidden="true">
-          <img id="bar-photo" src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=240&q=80" alt="" />
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div>
-          <strong id="bar-title">Butter Naan Bass</strong>
-          <p id="bar-artist">Dhaba Wala House Band</p>
-        </div>
-      </div>
-      <div class="music-controls">
-        <div class="music-buttons">
-          <button id="prev-track" class="icon-button" type="button" aria-label="Previous track">&#9198;</button>
-          <button id="play-track" class="play-button" type="button" aria-label="Play">&#9654;</button>
-          <button id="next-track" class="icon-button" type="button" aria-label="Next track">&#9197;</button>
-        </div>
-        <div class="progress-wrap">
-          <span id="current-time">0:00</span>
-          <input id="track-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Track progress" />
-          <span id="duration-time">0:32</span>
-        </div>
-      </div>
-      <div class="volume-wrap">
-        <span>VOL</span>
-        <input id="volume-range" type="range" min="0" max="1" value="0.8" step="0.01" aria-label="Volume" />
-      </div>
-    </section>
-
     <footer class="site-footer">
       <p>
-        ढाबा वाला Dhaba Wala Radio uses browser-generated audio loops and does
-        not embed video or YouTube playlists.
+        ढाबा वाला Dhaba Wala Radio plays through the official YouTube embedded
+        player. Rights remain with the respective artists and labels.
       </p>
       <a href="#top">Back to top</a>
     </footer>
 
     <script src="script.js"></script>
+    <script src="https://www.youtube.com/iframe_api"></script>
   </body>
 </html>
