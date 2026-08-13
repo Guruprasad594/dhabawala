@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Dhaba Wala Radio is an old Indian dhaba themed live music station powered by a YouTube playlist."
+      content="Dhaba Wala Radio is a futuristic 90s highway dhaba music station powered by a YouTube playlist."
     />
     <title>Dhaba Wala Radio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,30 +17,37 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main class="station-screen">
-      <div class="station-bg" aria-hidden="true"></div>
+    <main class="station-screen" aria-label="Dhaba Wala Radio">
+      <div class="station-bg" data-depth="-18" aria-hidden="true"></div>
+      <div class="synth-sun" data-depth="-10" aria-hidden="true"><span></span></div>
+      <div class="cassette-orbit" data-depth="20" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </div>
+      <div class="neon-grid-wrap" aria-hidden="true">
+        <div class="neon-grid"></div>
+      </div>
       <div class="station-vignette" aria-hidden="true"></div>
-      <div class="paint-texture" aria-hidden="true"></div>
+      <div class="scanlines" aria-hidden="true"></div>
 
-      <section class="ambient-panel" aria-label="Station information">
-        <p class="panel-label">Live from the counter</p>
+      <section class="ambient-panel" data-depth="10" aria-label="Station information">
+        <p class="panel-label">Cyber Dhaba 1996</p>
         <time id="station-time" datetime="">--:--</time>
         <p id="station-date" class="date-line">Thursday, 13 August - IST</p>
-        <div class="listener-line">
-          <span aria-hidden="true"></span>
-          <strong id="listener-count">635 listening</strong>
+        <div class="frequency-card">
+          <i data-lucide="radio" aria-hidden="true"></i>
+          <div>
+            <span>FM 90.9</span>
+            <strong>Highway signal live</strong>
+          </div>
         </div>
-        <a
-          class="creator-chip"
-          href="https://www.youtube.com/watch?v=5MIGQBpVeqs&list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy"
-          target="_blank"
-          rel="noreferrer"
-        >
-          @dhaba_wala
+        <a class="creator-chip" href="https://www.instagram.com/guru.shetty.x/" target="_blank" rel="noreferrer">
+          <i data-lucide="at-sign" aria-hidden="true"></i>
+          <span>guru.shetty.x</span>
         </a>
       </section>
 
-      <nav class="station-actions" aria-label="Station links">
+      <nav class="station-actions" data-depth="12" aria-label="Station links">
         <a href="https://www.youtube.com/playlist?list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy" target="_blank" rel="noreferrer">
           <i data-lucide="list-music" aria-hidden="true"></i>
           <span>Playlist</span>
@@ -50,30 +57,47 @@
           <span>All songs</span>
         </a>
         <div class="route-board" aria-label="Station route board">
-          <span>NH-44</span>
-          <strong>Open all night</strong>
-          <small>chai | tandoor | radio</small>
+          <span>Neo NH-44</span>
+          <strong>Open till sunrise</strong>
+          <small>tape deck | neon chai | radio</small>
         </div>
       </nav>
 
-      <section class="station-title" aria-labelledby="main-title">
+      <section class="station-title" data-depth="6" aria-labelledby="main-title">
         <div class="logo-token" aria-hidden="true">
+          <span class="logo-ring"></span>
           <span class="logo-flame"></span>
           <span class="logo-cup"></span>
         </div>
-        <p class="station-eyebrow">Dhaba Wala Radio</p>
+        <p class="station-eyebrow">Guru's Future Dhaba Radio</p>
         <h1 id="main-title" lang="hi">
           <span>ढाबा</span>
           <span>वाला</span>
         </h1>
-        <p class="station-subtitle">Highway songs, playing live</p>
+        <p class="station-subtitle">90s tape heat from a neon highway</p>
         <div class="mood-pill" aria-live="polite">
           <span class="live-dot" aria-hidden="true"></span>
           <span id="now-label">NOW PLAYING - HIGHWAY RAAT</span>
         </div>
       </section>
 
-      <section class="player-card" aria-label="Music player">
+      <section class="visual-console" data-depth="14" aria-label="Signal visualizer">
+        <div class="console-chip">CHAI-FI</div>
+        <div class="equalizer" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </section>
+
+      <section class="player-card" data-depth="8" aria-label="Music player">
         <div class="album-art">
           <img id="song-photo" src="https://img.youtube.com/vi/5MIGQBpVeqs/hqdefault.jpg" alt="" />
           <div id="youtube-player" class="youtube-engine" aria-hidden="true"></div>
@@ -130,7 +154,7 @@
       </section>
 
       <footer class="station-footer">
-        <p>dhabawala.radio@gmail.com | roadside radio, always warm</p>
+        <p>@guru.shetty.x | dhabawala.radio@gmail.com | neon roadside radio</p>
       </footer>
     </main>
 

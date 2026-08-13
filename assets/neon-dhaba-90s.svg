@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-label="Futuristic 90s neon dhaba at night">
+  <defs>
+    <linearGradient id="sky" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#07091d"/>
+      <stop offset="0.45" stop-color="#101248"/>
+      <stop offset="1" stop-color="#03040a"/>
+    </linearGradient>
+    <linearGradient id="road" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0" stop-color="#251246"/>
+      <stop offset="1" stop-color="#05050d"/>
+    </linearGradient>
+    <linearGradient id="neon" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#25f4ff"/>
+      <stop offset="0.5" stop-color="#ff2fb9"/>
+      <stop offset="1" stop-color="#d8ff47"/>
+    </linearGradient>
+    <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.2 0 1 0 0 0.7 0 0 1 0 1 0 0 0 1 0" result="color"/>
+      <feMerge>
+        <feMergeNode in="color"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <rect width="1920" height="1080" fill="url(#sky)"/>
+  <g opacity="0.55">
+    <path d="M0 352 C230 280 365 340 560 260 C780 170 920 292 1112 204 C1328 105 1540 148 1920 70" fill="none" stroke="#171f5a" stroke-width="8"/>
+    <path d="M0 430 C340 330 518 392 760 310 C1010 225 1215 316 1448 222 C1610 156 1748 150 1920 128" fill="none" stroke="#34105a" stroke-width="7"/>
+  </g>
+  <g opacity="0.5">
+    <circle cx="960" cy="332" r="210" fill="#ff2fb9"/>
+    <circle cx="960" cy="332" r="170" fill="#f8b941"/>
+    <path d="M728 280 H1192 M708 328 H1212 M714 376 H1206 M754 424 H1166 M826 472 H1094" stroke="#08091d" stroke-width="22"/>
+  </g>
+  <g transform="translate(566 272)" filter="url(#glow)">
+    <path d="M80 118 H708 L770 210 H18 Z" fill="#110a20" stroke="#25f4ff" stroke-width="5"/>
+    <path d="M128 26 H660 L708 118 H80 Z" fill="#27123f" stroke="#ff2fb9" stroke-width="5"/>
+    <path d="M126 26 L80 118 M194 26 L154 118 M262 26 L226 118 M330 26 L298 118 M398 26 L370 118 M466 26 L442 118 M534 26 L514 118 M602 26 L586 118" stroke="#d8ff47" stroke-width="4" opacity="0.55"/>
+    <rect x="128" y="172" width="534" height="330" rx="20" fill="#120b17" stroke="#25f4ff" stroke-width="5"/>
+    <rect x="174" y="216" width="442" height="230" rx="12" fill="#281336" stroke="#ff2fb9" stroke-width="4"/>
+    <rect x="214" y="254" width="132" height="150" rx="8" fill="#090916" stroke="#f8b941" stroke-width="3"/>
+    <rect x="388" y="254" width="168" height="150" rx="8" fill="#11152b" stroke="#d8ff47" stroke-width="3"/>
+    <circle cx="394" cy="156" r="22" fill="#f8b941"/>
+    <path d="M394 156 L212 454 H584 Z" fill="#f8b941" opacity="0.18"/>
+    <text x="394" y="318" text-anchor="middle" font-size="62" font-weight="900" font-family="Arial, sans-serif" fill="#fff0c9">FM 90.9</text>
+    <rect x="82" y="504" width="632" height="36" rx="8" fill="#070714" stroke="#ff2fb9" stroke-width="4"/>
+  </g>
+  <g transform="translate(184 694)" filter="url(#glow)" opacity="0.72">
+    <path d="M10 124 C168 48 310 48 514 108 L554 264 H38 Z" fill="#120817" stroke="#ff2fb9" stroke-width="4"/>
+    <rect x="82" y="186" width="368" height="24" fill="#25f4ff"/>
+    <circle cx="126" cy="172" r="28" fill="#d8ff47"/>
+    <circle cx="174" cy="172" r="30" fill="#ff2fb9"/>
+    <circle cx="224" cy="172" r="26" fill="#f8b941"/>
+    <circle cx="270" cy="172" r="30" fill="#25f4ff"/>
+    <path d="M370 144 C418 132 454 134 494 148 C452 174 410 174 370 144Z" fill="#f8b941"/>
+    <rect x="62" y="264" width="24" height="130" fill="#070714"/>
+    <rect x="470" y="264" width="24" height="130" fill="#070714"/>
+  </g>
+  <g transform="translate(1370 644)" filter="url(#glow)" opacity="0.7">
+    <rect x="0" y="0" width="312" height="190" rx="16" fill="#090916" stroke="#25f4ff" stroke-width="5"/>
+    <rect x="48" y="60" width="216" height="68" rx="18" fill="#16122b" stroke="#ff2fb9" stroke-width="4"/>
+    <circle cx="88" cy="94" r="32" fill="none" stroke="#d8ff47" stroke-width="8"/>
+    <circle cx="224" cy="94" r="32" fill="none" stroke="#d8ff47" stroke-width="8"/>
+    <path d="M120 94 H192" stroke="#fff0c9" stroke-width="8" stroke-linecap="round"/>
+    <rect x="82" y="146" width="148" height="18" rx="9" fill="#f8b941"/>
+  </g>
+  <path d="M0 784 L740 636 H1180 L1920 784 V1080 H0 Z" fill="url(#road)" opacity="0.9"/>
+  <g opacity="0.62">
+    <path d="M960 642 L260 1080 M960 642 L1660 1080" stroke="#25f4ff" stroke-width="4"/>
+    <path d="M960 660 V1080" stroke="#d8ff47" stroke-width="6" stroke-dasharray="58 52"/>
+    <path d="M692 694 H1228 M588 760 H1332 M422 862 H1498 M164 1022 H1756" stroke="#ff2fb9" stroke-width="3"/>
+  </g>
+  <rect y="932" width="1920" height="148" fill="#03040a" opacity="0.75"/>
+</svg>

@@ -18,6 +18,50 @@ function renderIcons() {
   }
 }
 
+function setupMouseParallax() {
+  const root = document.querySelector(".station-screen");
+  const targets = [...document.querySelectorAll("[data-depth]")];
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (!root || !targets.length || reduceMotion.matches) {
+    return;
+  }
+
+  let pointerX = 0;
+  let pointerY = 0;
+  let frameRequested = false;
+
+  const paint = () => {
+    frameRequested = false;
+    root.style.setProperty("--mouse-glow-x", `${pointerX * 80}px`);
+    root.style.setProperty("--mouse-glow-y", `${pointerY * 60}px`);
+
+    targets.forEach((target) => {
+      const depth = Number(target.dataset.depth || 0);
+      target.style.transform = `translate3d(${pointerX * depth}px, ${pointerY * depth}px, 0)`;
+    });
+  };
+
+  const queuePaint = () => {
+    if (!frameRequested) {
+      frameRequested = true;
+      window.requestAnimationFrame(paint);
+    }
+  };
+
+  window.addEventListener("pointermove", (event) => {
+    pointerX = (event.clientX / window.innerWidth - 0.5) * 2;
+    pointerY = (event.clientY / window.innerHeight - 0.5) * 2;
+    queuePaint();
+  });
+
+  window.addEventListener("pointerleave", () => {
+    pointerX = 0;
+    pointerY = 0;
+    queuePaint();
+  });
+}
+
 function getIndiaParts() {
   const date = new Date();
   const timeParts = new Intl.DateTimeFormat("en-IN", {
@@ -61,13 +105,10 @@ function updateClockAndMood() {
   const timeNode = document.querySelector("#station-time");
   const dateNode = document.querySelector("#station-date");
   const moodNode = document.querySelector("#now-label");
-  const listenersNode = document.querySelector("#listener-count");
-  const listenerCount = 610 + ((new Date().getMinutes() * 7 + hour24 * 13) % 75);
 
   timeNode.textContent = time;
   dateNode.textContent = `${dateLabel} - IST`;
   timeNode.setAttribute("datetime", new Date().toISOString());
-  listenersNode.textContent = `${listenerCount} listening`;
 
   if (mood) {
     moodNode.textContent = `NOW PLAYING - ${mood.label}`;
@@ -228,6 +269,7 @@ function onYouTubeIframeAPIReady() {
 }
 
 renderIcons();
+setupMouseParallax();
 updateClockAndMood();
 window.setInterval(updateClockAndMood, 60 * 1000);
 window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
