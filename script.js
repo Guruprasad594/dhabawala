@@ -1,4 +1,6 @@
-const rotations = [
+const playlistId = "PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy";
+const firstVideoId = "5MIGQBpVeqs";
+const moods = [
   { label: "Tandoor Subah", start: 5, end: 9 },
   { label: "Chai Counter", start: 9, end: 17 },
   { label: "Shaam Ki Thali", start: 17, end: 22 },
@@ -6,20 +8,40 @@ const rotations = [
 ];
 
 let youtubePlayer;
-let progressTimer;
 let isSeeking = false;
+let controlsReady = false;
+let wasMuted = false;
 
-function getIndiaHour() {
-  const parts = new Intl.DateTimeFormat("en-IN", {
+function getIndiaParts() {
+  const date = new Date();
+  const timeParts = new Intl.DateTimeFormat("en-IN", {
     timeZone: "Asia/Kolkata",
     hour: "numeric",
-    hourCycle: "h23",
-  }).formatToParts(new Date());
+    minute: "2-digit",
+    hour12: true,
+  }).formatToParts(date);
+  const dateLabel = new Intl.DateTimeFormat("en-IN", {
+    timeZone: "Asia/Kolkata",
+    weekday: "long",
+    day: "numeric",
+    month: "long",
+  }).format(date);
+  const hour24 = Number(
+    new Intl.DateTimeFormat("en-IN", {
+      timeZone: "Asia/Kolkata",
+      hour: "numeric",
+      hourCycle: "h23",
+    }).format(date),
+  );
 
-  return Number(parts.find((part) => part.type === "hour").value);
+  return {
+    hour24,
+    dateLabel,
+    time: `${timeParts.find((part) => part.type === "hour").value}:${timeParts.find((part) => part.type === "minute").value} ${timeParts.find((part) => part.type === "dayPeriod").value.toLowerCase()}`,
+  };
 }
 
-function isActive(hour, start, end) {
+function isActiveHour(hour, start, end) {
   if (start < end) {
     return hour >= start && hour < end;
   }
@@ -27,22 +49,19 @@ function isActive(hour, start, end) {
   return hour >= start || hour < end;
 }
 
-function updateRotation() {
-  const indiaHour = getIndiaHour();
-  const active = rotations.find((rotation) => isActive(indiaHour, rotation.start, rotation.end));
-  const nowLabel = document.querySelector("#now-label");
+function updateClockAndMood() {
+  const { hour24, dateLabel, time } = getIndiaParts();
+  const mood = moods.find((item) => isActiveHour(hour24, item.start, item.end));
+  const timeNode = document.querySelector("#station-time");
+  const dateNode = document.querySelector("#station-date");
+  const moodNode = document.querySelector("#now-label");
 
-  document.querySelectorAll(".rotation-card").forEach((card) => {
-    const start = Number(card.dataset.start);
-    const end = Number(card.dataset.end);
-    const cardIsActive = isActive(indiaHour, start, end);
+  timeNode.textContent = time;
+  dateNode.textContent = `${dateLabel} - IST`;
+  timeNode.setAttribute("datetime", new Date().toISOString());
 
-    card.classList.toggle("is-active", cardIsActive);
-    card.setAttribute("aria-current", cardIsActive ? "true" : "false");
-  });
-
-  if (nowLabel && active) {
-    nowLabel.textContent = `Now in India: ${active.label}`;
+  if (mood) {
+    moodNode.textContent = `NOW PLAYING - ${mood.label}`;
   }
 }
 
@@ -53,58 +72,57 @@ function formatTime(value) {
 
   const minutes = Math.floor(value / 60);
   const seconds = Math.floor(value % 60).toString().padStart(2, "0");
-
   return `${minutes}:${seconds}`;
-}
-
-function updateTrackInfo() {
-  if (!youtubePlayer || !youtubePlayer.getVideoData) {
-    return;
-  }
-
-  const data = youtubePlayer.getVideoData();
-  const title = data?.title || "Dhaba Wala Playlist";
-  const videoId = data?.video_id || "5MIGQBpVeqs";
-  const titleNode = document.querySelector("#track-title");
-  const sourceNode = document.querySelector("#track-source");
-  const photoNode = document.querySelector("#song-photo");
-
-  titleNode.textContent = title;
-  sourceNode.textContent = "YouTube Playlist";
-  photoNode.src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-}
-
-function updateProgress() {
-  if (!youtubePlayer || !youtubePlayer.getDuration || isSeeking) {
-    return;
-  }
-
-  const duration = youtubePlayer.getDuration();
-  const current = youtubePlayer.getCurrentTime();
-  const progress = document.querySelector("#track-progress");
-  const currentTime = document.querySelector("#current-time");
-  const durationTime = document.querySelector("#duration-time");
-
-  if (!duration) {
-    return;
-  }
-
-  progress.value = (current / duration) * 100;
-  currentTime.textContent = formatTime(current);
-  durationTime.textContent = formatTime(duration);
 }
 
 function setPlayingState(isPlaying) {
   const playButton = document.querySelector("#play-track");
 
-  playButton.textContent = isPlaying ? "PAUSE" : "PLAY";
+  playButton.classList.toggle("is-playing", isPlaying);
   playButton.setAttribute("aria-label", isPlaying ? "Pause" : "Play");
 }
 
-function setupControls() {
+function updateTrackInfo() {
+  if (!youtubePlayer?.getVideoData) {
+    return;
+  }
+
+  const data = youtubePlayer.getVideoData();
+  const videoId = data?.video_id || firstVideoId;
+  const title = data?.title || "Dhaba Wala Playlist";
+  const author = data?.author || "YouTube Playlist";
+
+  document.querySelector("#track-title").textContent = title;
+  document.querySelector("#track-source").textContent = `${author} - YouTube playlist`;
+  document.querySelector("#song-photo").src = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+}
+
+function updateProgress() {
+  if (!youtubePlayer?.getDuration || isSeeking) {
+    return;
+  }
+
+  const duration = youtubePlayer.getDuration();
+  const current = youtubePlayer.getCurrentTime();
+
+  if (!duration) {
+    return;
+  }
+
+  document.querySelector("#track-progress").value = (current / duration) * 100;
+  document.querySelector("#current-time").textContent = formatTime(current);
+  document.querySelector("#duration-time").textContent = formatTime(duration);
+}
+
+function bindControls() {
+  if (controlsReady) {
+    return;
+  }
+
   const playButton = document.querySelector("#play-track");
-  const previousButton = document.querySelector("#prev-track");
+  const prevButton = document.querySelector("#prev-track");
   const nextButton = document.querySelector("#next-track");
+  const muteButton = document.querySelector("#mute-track");
   const progress = document.querySelector("#track-progress");
 
   playButton.addEventListener("click", () => {
@@ -112,9 +130,7 @@ function setupControls() {
       return;
     }
 
-    const state = youtubePlayer.getPlayerState();
-
-    if (state === YT.PlayerState.PLAYING) {
+    if (youtubePlayer.getPlayerState() === YT.PlayerState.PLAYING) {
       youtubePlayer.pauseVideo();
       return;
     }
@@ -122,7 +138,7 @@ function setupControls() {
     youtubePlayer.playVideo();
   });
 
-  previousButton.addEventListener("click", () => {
+  prevButton.addEventListener("click", () => {
     youtubePlayer?.previousVideo();
   });
 
@@ -130,29 +146,58 @@ function setupControls() {
     youtubePlayer?.nextVideo();
   });
 
+  muteButton.addEventListener("click", () => {
+    if (!youtubePlayer) {
+      return;
+    }
+
+    wasMuted = !wasMuted;
+
+    if (wasMuted) {
+      youtubePlayer.mute();
+      muteButton.textContent = "MUTE";
+      return;
+    }
+
+    youtubePlayer.unMute();
+    muteButton.textContent = "VOL";
+  });
+
   progress.addEventListener("input", () => {
     isSeeking = true;
   });
 
   progress.addEventListener("change", () => {
-    if (!youtubePlayer || !youtubePlayer.getDuration) {
+    if (!youtubePlayer?.getDuration) {
+      isSeeking = false;
       return;
     }
 
-    const duration = youtubePlayer.getDuration();
-    youtubePlayer.seekTo((Number(progress.value) / 100) * duration, true);
+    youtubePlayer.seekTo((Number(progress.value) / 100) * youtubePlayer.getDuration(), true);
     isSeeking = false;
   });
+
+  controlsReady = true;
 }
 
 function onYouTubeIframeAPIReady() {
   youtubePlayer = new YT.Player("youtube-player", {
+    width: "1",
+    height: "1",
+    videoId: firstVideoId,
+    playerVars: {
+      listType: "playlist",
+      list: playlistId,
+      rel: 0,
+      modestbranding: 1,
+      playsinline: 1,
+    },
     events: {
       onReady: () => {
-        setupControls();
+        bindControls();
         updateTrackInfo();
         updateProgress();
-        progressTimer = setInterval(() => {
+        window.setInterval(() => {
           updateTrackInfo();
           updateProgress();
         }, 1000);
@@ -165,7 +210,6 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
-updateRotation();
-setInterval(updateRotation, 60 * 1000);
-
+updateClockAndMood();
+window.setInterval(updateClockAndMood, 60 * 1000);
 window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;

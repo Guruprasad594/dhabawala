@@ -1,7 +1,7 @@
 # Dhaba Wala Radio
 
 A Netlify-ready static website inspired by the live-radio feel of Deluxe Saloon,
-restyled as an old Indian dhaba music page with a retro radio player.
+restyled as an old Indian dhaba music station with a floating player bar.
 
 ## Run Locally
 
@@ -30,3 +30,6 @@ The site uses the official YouTube embedded player and IFrame API to play this
 playlist:
 
 https://www.youtube.com/watch?v=5MIGQBpVeqs&list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy
+
+The background illustration is local at `assets/old-dhaba-night.svg`, so it is
+ready for Netlify without extra image hosting.
