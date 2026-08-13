@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Dhaba Wala Radio is an old Indian dhaba themed music station powered by a YouTube playlist."
+      content="Dhaba Wala Radio is an old Indian dhaba themed live music station powered by a YouTube playlist."
     />
     <title>Dhaba Wala Radio</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@600;700;800;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+Devanagari:wght@600;700;800;900&family=Noto+Serif+Devanagari:wght@700;800;900&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -20,40 +20,56 @@
     <main class="station-screen">
       <div class="station-bg" aria-hidden="true"></div>
       <div class="station-vignette" aria-hidden="true"></div>
+      <div class="paint-texture" aria-hidden="true"></div>
 
       <section class="ambient-panel" aria-label="Station information">
+        <p class="panel-label">Live from the counter</p>
         <time id="station-time" datetime="">--:--</time>
-        <p id="station-date">Thursday, 13 August - IST</p>
+        <p id="station-date" class="date-line">Thursday, 13 August - IST</p>
         <div class="listener-line">
-          <span></span>
-          <strong>635 listening</strong>
+          <span aria-hidden="true"></span>
+          <strong id="listener-count">635 listening</strong>
         </div>
-        <a class="creator-chip" href="https://www.youtube.com/watch?v=5MIGQBpVeqs&list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy" target="_blank" rel="noreferrer">
-          playlist by Dhaba Wala
+        <a
+          class="creator-chip"
+          href="https://www.youtube.com/watch?v=5MIGQBpVeqs&list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy"
+          target="_blank"
+          rel="noreferrer"
+        >
+          @dhaba_wala
         </a>
       </section>
 
       <nav class="station-actions" aria-label="Station links">
-        <a href="https://www.youtube.com/playlist?list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy" target="_blank" rel="noreferrer">Playlist</a>
-        <a href="https://www.youtube.com/watch?v=5MIGQBpVeqs&list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy" target="_blank" rel="noreferrer">All songs</a>
-        <div class="support-box">
-          <p>Keep the dhaba radio running.</p>
-          <button type="button">Chai fund</button>
-          <button type="button">Tandoor tip</button>
+        <a href="https://www.youtube.com/playlist?list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy" target="_blank" rel="noreferrer">
+          <i data-lucide="list-music" aria-hidden="true"></i>
+          <span>Playlist</span>
+        </a>
+        <a href="https://www.youtube.com/watch?v=5MIGQBpVeqs&list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy" target="_blank" rel="noreferrer">
+          <i data-lucide="music-2" aria-hidden="true"></i>
+          <span>All songs</span>
+        </a>
+        <div class="route-board" aria-label="Station route board">
+          <span>NH-44</span>
+          <strong>Open all night</strong>
+          <small>chai | tandoor | radio</small>
         </div>
       </nav>
 
       <section class="station-title" aria-labelledby="main-title">
         <div class="logo-token" aria-hidden="true">
-          <span></span>
+          <span class="logo-flame"></span>
+          <span class="logo-cup"></span>
         </div>
-        <h1 id="main-title">
+        <p class="station-eyebrow">Dhaba Wala Radio</p>
+        <h1 id="main-title" lang="hi">
           <span>ढाबा</span>
           <span>वाला</span>
         </h1>
-        <p>DHABA WALA RADIO</p>
+        <p class="station-subtitle">Highway songs, playing live</p>
         <div class="mood-pill" aria-live="polite">
-          <span id="now-label">NOW PLAYING - HIGHWAY DHABA</span>
+          <span class="live-dot" aria-hidden="true"></span>
+          <span id="now-label">NOW PLAYING - HIGHWAY RAAT</span>
         </div>
       </section>
 
@@ -61,14 +77,19 @@
         <div class="album-art">
           <img id="song-photo" src="https://img.youtube.com/vi/5MIGQBpVeqs/hqdefault.jpg" alt="" />
           <div id="youtube-player" class="youtube-engine" aria-hidden="true"></div>
-          <span class="source-stamp">YouTube</span>
+          <span class="source-stamp">
+            <i data-lucide="radio" aria-hidden="true"></i>
+            <span>YouTube</span>
+          </span>
         </div>
 
         <div class="player-body">
-          <button class="fold-button" type="button" aria-label="Collapse player">v</button>
-          <p class="player-kicker">Playing from your playlist</p>
+          <div class="player-topline">
+            <p class="player-kicker">Now playing</p>
+            <span>IST rotation</span>
+          </div>
           <h2 id="track-title">Dhaba Wala Playlist</h2>
-          <p id="track-source">Loading YouTube station...</p>
+          <p id="track-source">Dhaba Wala playlist - India time rotation</p>
 
           <div class="progress-row">
             <span id="current-time">0:00</span>
@@ -77,22 +98,43 @@
           </div>
 
           <div class="control-row">
-            <button id="prev-track" class="control-button" type="button" aria-label="Previous song">|&lt;</button>
-            <button id="play-track" class="play-button" type="button" aria-label="Play">
-              <span class="play-shape"></span>
+            <button id="prev-track" class="control-button" type="button" aria-label="Previous song">
+              <i data-lucide="skip-back" aria-hidden="true"></i>
+              <span class="visually-hidden">Previous song</span>
             </button>
-            <button id="next-track" class="control-button" type="button" aria-label="Next song">&gt;|</button>
-            <button id="mute-track" class="control-button" type="button" aria-label="Mute">VOL</button>
-            <a class="external-link" href="https://www.youtube.com/watch?v=5MIGQBpVeqs&list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy" target="_blank" rel="noreferrer">YT Music</a>
+            <button id="play-track" class="play-button" type="button" aria-label="Play">
+              <i class="icon-play" data-lucide="play" aria-hidden="true"></i>
+              <i class="icon-pause" data-lucide="pause" aria-hidden="true"></i>
+              <span class="visually-hidden">Play</span>
+            </button>
+            <button id="next-track" class="control-button" type="button" aria-label="Next song">
+              <i data-lucide="skip-forward" aria-hidden="true"></i>
+              <span class="visually-hidden">Next song</span>
+            </button>
+            <button id="mute-track" class="control-button" type="button" aria-label="Mute">
+              <i class="icon-volume" data-lucide="volume-2" aria-hidden="true"></i>
+              <i class="icon-muted" data-lucide="volume-x" aria-hidden="true"></i>
+              <span class="visually-hidden">Mute</span>
+            </button>
+            <a
+              class="external-link"
+              href="https://www.youtube.com/watch?v=5MIGQBpVeqs&list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <i data-lucide="external-link" aria-hidden="true"></i>
+              <span>Open</span>
+            </a>
           </div>
         </div>
       </section>
 
       <footer class="station-footer">
-        <p>contact: dhabawala.radio@gmail.com</p>
+        <p>dhabawala.radio@gmail.com | roadside radio, always warm</p>
       </footer>
     </main>
 
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="script.js"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
   </body>

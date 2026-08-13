@@ -12,6 +12,12 @@ let isSeeking = false;
 let controlsReady = false;
 let wasMuted = false;
 
+function renderIcons() {
+  if (window.lucide?.createIcons) {
+    window.lucide.createIcons();
+  }
+}
+
 function getIndiaParts() {
   const date = new Date();
   const timeParts = new Intl.DateTimeFormat("en-IN", {
@@ -55,10 +61,13 @@ function updateClockAndMood() {
   const timeNode = document.querySelector("#station-time");
   const dateNode = document.querySelector("#station-date");
   const moodNode = document.querySelector("#now-label");
+  const listenersNode = document.querySelector("#listener-count");
+  const listenerCount = 610 + ((new Date().getMinutes() * 7 + hour24 * 13) % 75);
 
   timeNode.textContent = time;
   dateNode.textContent = `${dateLabel} - IST`;
   timeNode.setAttribute("datetime", new Date().toISOString());
+  listenersNode.textContent = `${listenerCount} listening`;
 
   if (mood) {
     moodNode.textContent = `NOW PLAYING - ${mood.label}`;
@@ -80,6 +89,13 @@ function setPlayingState(isPlaying) {
 
   playButton.classList.toggle("is-playing", isPlaying);
   playButton.setAttribute("aria-label", isPlaying ? "Pause" : "Play");
+}
+
+function setMutedState(isMuted) {
+  const muteButton = document.querySelector("#mute-track");
+
+  muteButton.classList.toggle("is-muted", isMuted);
+  muteButton.setAttribute("aria-label", isMuted ? "Unmute" : "Mute");
 }
 
 function updateTrackInfo() {
@@ -155,12 +171,12 @@ function bindControls() {
 
     if (wasMuted) {
       youtubePlayer.mute();
-      muteButton.textContent = "MUTE";
+      setMutedState(true);
       return;
     }
 
     youtubePlayer.unMute();
-    muteButton.textContent = "VOL";
+    setMutedState(false);
   });
 
   progress.addEventListener("input", () => {
@@ -191,6 +207,7 @@ function onYouTubeIframeAPIReady() {
       rel: 0,
       modestbranding: 1,
       playsinline: 1,
+      origin: window.location.origin,
     },
     events: {
       onReady: () => {
@@ -210,6 +227,7 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
+renderIcons();
 updateClockAndMood();
 window.setInterval(updateClockAndMood, 60 * 1000);
 window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
