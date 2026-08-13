@@ -55,9 +55,8 @@
           <p class="section-kicker">Playing through YouTube</p>
           <h2 id="radio-title">The dhaba speaker is on.</h2>
           <p>
-            This page uses your playlist as the house rotation. Keep it running
-            while the parathas land, the kettle hisses, and the highway keeps
-            moving outside.
+            No video, no YouTube playlist. This page now plays its own tiny
+            dhaba-style instrumental loops directly in the browser.
           </p>
           <div class="now-strip" aria-live="polite">
             <span class="status-dot"></span>
@@ -67,6 +66,7 @@
 
         <div class="audio-panel">
           <div class="audio-art" aria-hidden="true">
+            <img id="track-photo" src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=80" alt="" />
             <div class="audio-art__plate">
               <span></span>
               <span></span>
@@ -76,23 +76,15 @@
             <p>Audio Only</p>
           </div>
           <div class="audio-meta">
-            <p class="section-kicker">No video screen</p>
-            <h3 id="track-title">Dhaba Wala Speaker</h3>
-            <p id="track-note">Direct audio stream not connected yet.</p>
+            <p class="section-kicker">Built-in player</p>
+            <h3 id="track-title">Butter Naan Bass</h3>
+            <p id="track-note">Warm tandoor groove for the first order.</p>
           </div>
-          <audio id="dhaba-audio" controls preload="none"></audio>
-          <div class="audio-controls" aria-label="Audio controls">
-            <button id="prev-track" type="button" aria-label="Previous track">&lt;</button>
-            <button id="next-track" type="button" aria-label="Next track">&gt;</button>
+          <div class="track-picks" aria-label="Track list">
+            <button class="track-pill is-selected" type="button" data-track="0">Butter Naan Bass</button>
+            <button class="track-pill" type="button" data-track="1">Masala Chai Chorus</button>
+            <button class="track-pill" type="button" data-track="2">Highway Raat</button>
           </div>
-          <a
-            class="playlist-link"
-            href="https://www.youtube.com/watch?v=5MIGQBpVeqs&list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy"
-            target="_blank"
-            rel="noreferrer"
-          >
-            Open the playlist source on YouTube
-          </a>
         </div>
       </section>
 
@@ -155,10 +147,42 @@
       </section>
     </main>
 
+    <section class="music-bar" aria-label="Music player">
+      <audio id="dhaba-audio" preload="auto" loop></audio>
+      <div class="music-track">
+        <div class="mini-cover" aria-hidden="true">
+          <img id="bar-photo" src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=240&q=80" alt="" />
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div>
+          <strong id="bar-title">Butter Naan Bass</strong>
+          <p id="bar-artist">Dhaba Wala House Band</p>
+        </div>
+      </div>
+      <div class="music-controls">
+        <div class="music-buttons">
+          <button id="prev-track" class="icon-button" type="button" aria-label="Previous track">&#9198;</button>
+          <button id="play-track" class="play-button" type="button" aria-label="Play">&#9654;</button>
+          <button id="next-track" class="icon-button" type="button" aria-label="Next track">&#9197;</button>
+        </div>
+        <div class="progress-wrap">
+          <span id="current-time">0:00</span>
+          <input id="track-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Track progress" />
+          <span id="duration-time">0:32</span>
+        </div>
+      </div>
+      <div class="volume-wrap">
+        <span>VOL</span>
+        <input id="volume-range" type="range" min="0" max="1" value="0.8" step="0.01" aria-label="Volume" />
+      </div>
+    </section>
+
     <footer class="site-footer">
       <p>
-        ढाबा वाला Dhaba Wala Radio streams through YouTube embeds. Nothing is
-        hosted here; rights remain with the respective artists and labels.
+        ढाबा वाला Dhaba Wala Radio uses browser-generated audio loops and does
+        not embed video or YouTube playlists.
       </p>
       <a href="#top">Back to top</a>
     </footer>
