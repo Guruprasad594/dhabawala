@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Dhaba Wala Radio is a roadside Indian dhaba themed YouTube playlist site with India-time music rotations."
+    />
+    <title>Dhaba Wala Radio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Devanagari:wght@500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand-mark" href="#top" aria-label="Dhaba Wala Radio home">
+        <span class="brand-mark__hindi">ढाबा वाला</span>
+        <span>Dhaba Wala</span>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#radio">Radio</a>
+        <a href="#rotations">Rotations</a>
+        <a href="#menu">Menu</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero__image" role="img" aria-label="A warm Indian meal served at a roadside dhaba"></div>
+        <div class="hero__shade"></div>
+        <div class="hero__content">
+          <p class="eyebrow">Highway songs, steel tumblers, hot tawa</p>
+          <h1 id="hero-title">
+            <span>ढाबा वाला रेडियो</span>
+            Dhaba Wala Radio
+          </h1>
+          <p class="hero__copy">
+            A roadside Indian dhaba music page for chai breaks, late-night drives,
+            butter naan orders, and that one speaker near the billing counter.
+          </p>
+          <div class="hero__actions">
+            <a class="button button--primary" href="#radio">Start the playlist</a>
+            <a class="button button--ghost" href="#rotations">See today&apos;s mood</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="radio-shell" id="radio" aria-labelledby="radio-title">
+        <div class="radio-copy">
+          <p class="section-kicker">Playing through YouTube</p>
+          <h2 id="radio-title">The dhaba speaker is on.</h2>
+          <p>
+            This page uses your playlist as the house rotation. Keep it running
+            while the parathas land, the kettle hisses, and the highway keeps
+            moving outside.
+          </p>
+          <div class="now-strip" aria-live="polite">
+            <span class="status-dot"></span>
+            <span id="now-label">Checking India time...</span>
+          </div>
+        </div>
+
+        <div class="audio-panel">
+          <div class="audio-art" aria-hidden="true">
+            <div class="audio-art__plate">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <p>Audio Only</p>
+          </div>
+          <div class="audio-meta">
+            <p class="section-kicker">No video screen</p>
+            <h3 id="track-title">Dhaba Wala Speaker</h3>
+            <p id="track-note">Direct audio stream not connected yet.</p>
+          </div>
+          <audio id="dhaba-audio" controls preload="none"></audio>
+          <div class="audio-controls" aria-label="Audio controls">
+            <button id="prev-track" type="button" aria-label="Previous track">&lt;</button>
+            <button id="next-track" type="button" aria-label="Next track">&gt;</button>
+          </div>
+          <a
+            class="playlist-link"
+            href="https://www.youtube.com/watch?v=5MIGQBpVeqs&list=PLgObA3pAqvOh87Z03QG8Z4xE-uqlAWSBy"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Open the playlist source on YouTube
+          </a>
+        </div>
+      </section>
+
+      <section class="rotations" id="rotations" aria-labelledby="rotations-title">
+        <div class="section-heading">
+          <p class="section-kicker">Four rotations</p>
+          <h2 id="rotations-title">One mood for each part of the dhaba day.</h2>
+        </div>
+
+        <div class="rotation-grid">
+          <article class="rotation-card" data-start="5" data-end="9">
+            <span class="rotation-card__time">05:00-09:00 IST</span>
+            <h3>तंदूर सुबह</h3>
+            <p>Tandoor Subah</p>
+            <small>Tea is strong, rotis are first off the flame, drivers are waking up.</small>
+          </article>
+          <article class="rotation-card" data-start="9" data-end="17">
+            <span class="rotation-card__time">09:00-17:00 IST</span>
+            <h3>चाय काउंटर</h3>
+            <p>Chai Counter</p>
+            <small>Daytime orders, office lunches, and songs everyone quietly knows.</small>
+          </article>
+          <article class="rotation-card" data-start="17" data-end="22">
+            <span class="rotation-card__time">17:00-22:00 IST</span>
+            <h3>शाम की थाली</h3>
+            <p>Shaam Ki Thali</p>
+            <small>The rush hour table: louder hooks, sizzling onions, extra pickle.</small>
+          </article>
+          <article class="rotation-card" data-start="22" data-end="5">
+            <span class="rotation-card__time">22:00-05:00 IST</span>
+            <h3>हाईवे रात</h3>
+            <p>Highway Raat</p>
+            <small>Truck lights, empty roads, and the slow songs after midnight.</small>
+          </article>
+        </div>
+      </section>
+
+      <section class="menu-board" id="menu" aria-labelledby="menu-title">
+        <div>
+          <p class="section-kicker">Dhaba specials</p>
+          <h2 id="menu-title">Served with music.</h2>
+        </div>
+        <div class="menu-list">
+          <div class="menu-item">
+            <span>01</span>
+            <strong>Butter Naan Bass</strong>
+            <p>Warm, familiar tracks for sitting longer than planned.</p>
+          </div>
+          <div class="menu-item">
+            <span>02</span>
+            <strong>Masala Chai Chorus</strong>
+            <p>Catchy songs that sound better from a small counter speaker.</p>
+          </div>
+          <div class="menu-item">
+            <span>03</span>
+            <strong>Truck Stop Dard</strong>
+            <p>Late night feelings with the road still open ahead.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>
+        ढाबा वाला Dhaba Wala Radio streams through YouTube embeds. Nothing is
+        hosted here; rights remain with the respective artists and labels.
+      </p>
+      <a href="#top">Back to top</a>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
