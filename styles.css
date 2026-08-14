@@ -1311,19 +1311,20 @@ input:focus-visible {
 
 /* Final compact music bar override */
 .music-player.player-card {
-  width: min(720px, calc(100vw - 28px)) !important;
-  min-height: 82px !important;
-  grid-template-columns: 48px minmax(0, 1fr) !important;
-  gap: 12px !important;
-  border-radius: 26px !important;
-  padding: 12px 18px !important;
+  width: min(724px, calc(100vw - 28px)) !important;
+  height: 104px !important;
+  min-height: 104px !important;
+  grid-template-columns: 58px minmax(0, 1fr) !important;
+  gap: 16px !important;
+  border-radius: 32px !important;
+  padding: 18px 22px !important;
 }
 
 .music-player .album-art {
-  width: 48px !important;
-  height: 48px !important;
+  width: 58px !important;
+  height: 58px !important;
   min-height: 0 !important;
-  border-radius: 9px !important;
+  border-radius: 10px !important;
 }
 
 .music-player .player-body {
@@ -1332,7 +1333,7 @@ input:focus-visible {
     "title controls"
     "source controls"
     "progress controls" !important;
-  column-gap: 14px !important;
+  column-gap: 18px !important;
   padding: 0 !important;
 }
 
@@ -1341,18 +1342,18 @@ input:focus-visible {
 }
 
 .music-player .player-body h2 {
-  font-size: 0.92rem !important;
-  line-height: 1.1 !important;
+  font-size: 1rem !important;
+  line-height: 1.12 !important;
 }
 
 .music-player .player-body > p:not(.player-kicker) {
-  margin-top: 3px !important;
-  font-size: 0.7rem !important;
+  margin-top: 5px !important;
+  font-size: 0.76rem !important;
 }
 
 .music-player .player-progress-line {
   gap: 8px !important;
-  margin-top: 7px !important;
+  margin-top: 9px !important;
 }
 
 .music-player .player-signal {
@@ -1369,17 +1370,17 @@ input:focus-visible {
 }
 
 .music-player .control-row {
-  gap: 8px !important;
+  gap: 10px !important;
 }
 
 .music-player .control-button {
-  width: 34px !important;
-  height: 34px !important;
+  width: 42px !important;
+  height: 42px !important;
 }
 
 .music-player .play-button {
-  width: 42px !important;
-  height: 42px !important;
+  width: 52px !important;
+  height: 52px !important;
 }
 
 @media (max-width: 680px) {
