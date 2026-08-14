@@ -1308,3 +1308,90 @@ input:focus-visible {
     width: 44px;
   }
 }
+
+/* Final compact music bar override */
+.music-player.player-card {
+  width: min(720px, calc(100vw - 28px)) !important;
+  min-height: 82px !important;
+  grid-template-columns: 48px minmax(0, 1fr) !important;
+  gap: 12px !important;
+  border-radius: 26px !important;
+  padding: 12px 18px !important;
+}
+
+.music-player .album-art {
+  width: 48px !important;
+  height: 48px !important;
+  min-height: 0 !important;
+  border-radius: 9px !important;
+}
+
+.music-player .player-body {
+  grid-template-columns: minmax(0, 1fr) auto !important;
+  grid-template-areas:
+    "title controls"
+    "source controls"
+    "progress controls" !important;
+  column-gap: 14px !important;
+  padding: 0 !important;
+}
+
+.music-player .player-topline {
+  display: none !important;
+}
+
+.music-player .player-body h2 {
+  font-size: 0.92rem !important;
+  line-height: 1.1 !important;
+}
+
+.music-player .player-body > p:not(.player-kicker) {
+  margin-top: 3px !important;
+  font-size: 0.7rem !important;
+}
+
+.music-player .player-progress-line {
+  gap: 8px !important;
+  margin-top: 7px !important;
+}
+
+.music-player .player-signal {
+  width: 42px !important;
+}
+
+.music-player .equalizer {
+  height: 10px !important;
+}
+
+.music-player .progress-row {
+  grid-template-columns: 28px minmax(100px, 1fr) 32px !important;
+  gap: 6px !important;
+}
+
+.music-player .control-row {
+  gap: 8px !important;
+}
+
+.music-player .control-button {
+  width: 34px !important;
+  height: 34px !important;
+}
+
+.music-player .play-button {
+  width: 42px !important;
+  height: 42px !important;
+}
+
+@media (max-width: 680px) {
+  .music-player.player-card {
+    width: 100% !important;
+    min-height: 78px !important;
+    grid-template-columns: 44px minmax(0, 1fr) !important;
+    padding: 11px 12px !important;
+  }
+
+  .music-player .album-art {
+    width: 44px !important;
+    height: 44px !important;
+  }
+}
