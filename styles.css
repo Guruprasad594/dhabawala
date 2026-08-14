@@ -511,22 +511,23 @@ h1 span {
 
 /* ── Player ── */
 
+.music-player,
 .player-card {
   grid-row: 2;
   position: relative;
   z-index: 5;
   align-self: end;
   justify-self: center;
-  width: min(100%, 760px);
-  min-height: 104px;
+  width: min(840px, calc(100vw - 28px));
+  min-height: 96px;
   display: grid;
   grid-template-columns: 58px minmax(0, 1fr);
   align-items: center;
   gap: 16px;
   overflow: hidden;
   border: 1px solid var(--line);
-  border-radius: 32px;
-  padding: 18px 24px;
+  border-radius: 30px;
+  padding: 16px 24px;
   background: var(--glass-strong);
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(24px) saturate(1.15);
@@ -1133,6 +1134,7 @@ input:focus-visible {
     transform: none !important;
   }
 
+  .music-player,
   .player-card {
     width: 100%;
     grid-template-columns: 56px minmax(0, 1fr);
@@ -1201,6 +1203,7 @@ input:focus-visible {
     text-align: left;
   }
 
+  .music-player,
   .player-card {
     grid-template-columns: 52px minmax(0, 1fr);
     gap: 12px;
