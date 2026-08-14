@@ -75,22 +75,6 @@
         </div>
       </section>
 
-      <section class="visual-console" data-depth="14" aria-label="Signal visualizer">
-        <div class="console-chip">CHAI-FI</div>
-        <div class="equalizer" aria-hidden="true">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </section>
-
       <section class="player-card is-loading" data-depth="8" aria-label="Music player" aria-busy="true">
         <div class="album-art">
           <img id="song-photo" src="https://img.youtube.com/vi/5MIGQBpVeqs/hqdefault.jpg" alt="" decoding="async" />
@@ -136,6 +120,21 @@
               <span class="visually-hidden">Mute</span>
             </button>
             <input id="volume-track" type="range" min="0" max="100" value="80" step="1" aria-label="Volume" />
+            <div class="player-signal" aria-hidden="true">
+              <span class="console-chip">CHAI-FI</span>
+              <div class="equalizer is-idle">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
           </div>
         </div>
       </section>

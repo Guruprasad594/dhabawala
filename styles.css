@@ -460,21 +460,24 @@ h1 span {
   animation: pulse 2s ease-in-out infinite;
 }
 
-/* ── Visualizer ── */
+/* ── Signal visualizer ── */
 
-.visual-console {
-  position: absolute;
-  left: clamp(20px, 4vw, 72px);
-  bottom: clamp(140px, 17vh, 190px);
-  z-index: 4;
+.player-signal {
   display: grid;
-  gap: 8px;
-  width: min(190px, calc(100vw - 40px));
+  flex: 0 1 148px;
+  gap: 5px;
+  width: clamp(124px, 17vw, 148px);
+  margin-left: auto;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 10px 12px;
+  padding: 7px 9px 8px;
   background: var(--glass);
-  backdrop-filter: blur(16px);
+  box-shadow: inset 0 1px 0 rgba(255, 200, 120, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.player-signal .console-chip {
+  line-height: 1;
 }
 
 .equalizer {
@@ -482,7 +485,7 @@ h1 span {
   grid-template-columns: repeat(10, 1fr);
   align-items: end;
   gap: 4px;
-  height: 48px;
+  height: 34px;
 }
 
 .equalizer span {
@@ -490,6 +493,7 @@ h1 span {
   border-radius: 3px 3px 1px 1px;
   background: linear-gradient(180deg, var(--gold), var(--tandoor));
   opacity: 0.85;
+  transform-origin: bottom;
   animation: equalize 1.2s ease-in-out infinite alternate;
 }
 
@@ -684,6 +688,14 @@ h1 span {
   align-items: center;
   gap: 10px;
   margin-top: 12px;
+}
+
+#volume-track {
+  flex: 0 1 118px;
+  width: clamp(88px, 14vw, 118px);
+  min-width: 88px;
+  accent-color: var(--amber);
+  cursor: pointer;
 }
 
 .control-button,
@@ -1079,12 +1091,6 @@ input:focus-visible {
   }
 }
 
-@media (max-width: 1120px) {
-  .visual-console {
-    display: none;
-  }
-}
-
 @media (max-width: 980px) {
   .station-screen {
     min-height: 100svh;
@@ -1214,6 +1220,16 @@ input:focus-visible {
     gap: 8px;
   }
 
+  .player-signal {
+    flex: 1 1 142px;
+    width: min(100%, 160px);
+    margin-left: 0;
+  }
+
+  #volume-track {
+    flex: 1 1 92px;
+  }
+
   .external-link {
     margin-left: 0;
   }
@@ -1251,5 +1267,10 @@ input:focus-visible {
 
   .player-body > p:not(.player-kicker) {
     white-space: normal;
+  }
+
+  .player-signal {
+    flex-basis: 100%;
+    width: 100%;
   }
 }
